@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Predictive Delivery & Analytics dashboard for forecasting shipment risk, route performance, carrier reliability, and fulfillment outcomes."
+    />
+    <title>Predictive Delivery & Analytics</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#overview" aria-label="Predictive Delivery & Analytics home">
+        <span class="brand-mark">PD</span>
+        <span>Predictive Delivery</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#forecast">Forecast</a>
+        <a href="#routes">Routes</a>
+        <a href="#insights">Insights</a>
+      </nav>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span aria-hidden="true">☾</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="overview">
+        <div class="hero-copy">
+          <p class="eyebrow">Delivery intelligence workspace</p>
+          <h1>Predict delays before they become exceptions.</h1>
+          <p>
+            Track fulfillment velocity, detect route risk, and simulate delivery outcomes from one clean
+            operations dashboard.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#forecast">View forecast</a>
+            <a class="button secondary" href="#routes">Inspect routes</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Live predictive delivery summary">
+          <div class="panel-header">
+            <div>
+              <p class="label">Network health</p>
+              <strong id="healthScore">92%</strong>
+            </div>
+            <span class="status good">Stable</span>
+          </div>
+          <canvas id="heroChart" width="720" height="360" aria-label="On-time delivery trend chart"></canvas>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Key delivery metrics">
+        <article class="metric">
+          <span class="metric-icon">✓</span>
+          <p>Predicted on-time</p>
+          <strong id="onTimeMetric">94.8%</strong>
+          <small>+3.1% vs last week</small>
+        </article>
+        <article class="metric">
+          <span class="metric-icon">!</span>
+          <p>At-risk shipments</p>
+          <strong id="riskMetric">148</strong>
+          <small>27 need action today</small>
+        </article>
+        <article class="metric">
+          <span class="metric-icon">↗</span>
+          <p>Average delivery speed</p>
+          <strong id="speedMetric">1.8d</strong>
+          <small>0.3d faster than target</small>
+        </article>
+        <article class="metric">
+          <span class="metric-icon">$</span>
+          <p>Cost variance</p>
+          <strong id="costMetric">-8.4%</strong>
+          <small>Optimized carrier mix</small>
+        </article>
+      </section>
+
+      <section class="workspace" id="forecast">
+        <div class="section-heading">
+          <p class="eyebrow">Predictive model</p>
+          <h2>Scenario forecast</h2>
+        </div>
+        <div class="forecast-layout">
+          <form class="control-panel" id="forecastForm">
+            <label>
+              Region
+              <select id="regionSelect">
+                <option value="north">North network</option>
+                <option value="south">South network</option>
+                <option value="coastal">Coastal network</option>
+                <option value="metro">Metro network</option>
+              </select>
+            </label>
+            <label>
+              Demand pressure
+              <input id="demandRange" type="range" min="20" max="100" value="68" />
+              <span class="range-value"><output id="demandOutput">68</output>% load</span>
+            </label>
+            <label>
+              Weather impact
+              <input id="weatherRange" type="range" min="0" max="80" value="18" />
+              <span class="range-value"><output id="weatherOutput">18</output>% disruption</span>
+            </label>
+            <label>
+              Carrier capacity
+              <input id="capacityRange" type="range" min="30" max="100" value="82" />
+              <span class="range-value"><output id="capacityOutput">82</output>% available</span>
+            </label>
+          </form>
+
+          <div class="analytics-panel">
+            <div class="panel-header">
+              <div>
+                <p class="label">Delivery risk score</p>
+                <strong id="riskScore">31</strong>
+              </div>
+              <span class="status" id="riskStatus">Moderate</span>
+            </div>
+            <canvas id="forecastChart" width="820" height="360" aria-label="Forecasted delivery reliability chart"></canvas>
+            <div class="recommendation">
+              <span>Next best action</span>
+              <p id="recommendationText">Shift 12% of Zone 3 volume to early pickup windows.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="routes" id="routes">
+        <div class="section-heading">
+          <p class="eyebrow">Route command</p>
+          <h2>Lane-level risk monitoring</h2>
+        </div>
+        <div class="route-grid" id="routeGrid" aria-live="polite"></div>
+      </section>
+
+      <section class="insights" id="insights">
+        <div class="section-heading">
+          <p class="eyebrow">Operational insights</p>
+          <h2>What the model sees</h2>
+        </div>
+        <div class="insight-list">
+          <article>
+            <h3>Fulfillment cutoff sensitivity</h3>
+            <p>Orders released after 3:00 PM are 2.4x more likely to miss promised delivery in dense metro lanes.</p>
+          </article>
+          <article>
+            <h3>Carrier reliability drift</h3>
+            <p>Two regional carriers show widening variance during Monday peaks, especially under elevated demand.</p>
+          </article>
+          <article>
+            <h3>Inventory placement opportunity</h3>
+            <p>Moving high-velocity SKUs closer to coastal demand can recover 420 delivery hours per week.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Predictive Delivery & Analytics · Static GitHub Pages dashboard</p>
+      <a href="#overview">Back to top</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
